@@ -24,14 +24,15 @@ use App\Http\Controllers\TambahDataController;
 
 // Route::get('/home', [HomeController::class, 'home']);
 
-Route::get('/', function(){
-    return view('dashboard.index');
-})->middleware('auth');
+// Route::get('/', function(){
+//     return view('dashboard.index');
+// })->middleware('auth');
 
 Auth::routes();
+Route::get('/', [DashboardController::class, 'index']);
 Route::get('/dashboard', [DashboardController::class, 'index']);
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 // Route::resource('/dashboard/profil', DashboardProfilController::class);
 

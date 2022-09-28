@@ -18,32 +18,34 @@
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
-          <a href="/dashboard/tambahdata" type="button" class="btn btn-success mb-2">Tambah Data</a>
+          <a href="/dashboard/tambahdata" type="button" class="btn btn-success mb-2"><i class="bi bi-plus-lg"></i> Tambah Data</a>
+          <a href="/dashboard/exportpdf" type="button" class="btn btn-danger mb-2"><i class="bi bi-filetype-pdf"></i> Export PDF</a>
+          <a href="/dashboard/exportexcel" type="button" class="btn btn-success mb-2"><i class="bi bi-filetype-xlsx"></i> Export Excel</a>
           
-
           {{-- Search --}}
-          <div class="row g-3 align-items-center mb-2">
-            <div class="col-auto">
-              <form action="/dashboard/profil" method="GET">
-                <input type="search" id="inputPassword6" name="search" class="form-control" aria-describedby="passwordHelpInline">
-              </form>
-            </div>
-
-            <div class="col-auto">
-              <a href="/dashboard/exportpdf" type="button" class="btn btn-danger mb-2">Export PDF</a>
-            </div>
-
-            <div class="col-auto">
-              <a href="/dashboard/exportexcel" type="button" class="btn btn-success mb-2">Export Excel</a>
-            </div>
-
+      <form class="row g-3" method="GET">
+          <div class="col-auto">
+            <select class="form-select form-inline" name="filter" aria-label="Default select example">
+              <option selected>Pilih Berdasarkan</option>
+              <option value="SMA" type='submit'>SMA</option>
+              <option value="SMK">SMK</option>
+            </select>
           </div>
+          <div class="col-auto">
+            <input type="search" id="inputPassword6" name="search" class="form-control" aria-describedby="passwordHelpInline">
+        </div>
+          <div class="col-auto">
+            <button type="submit" class="btn btn-primary mb-3">Search</button>
+          </div>
+      </form>
     
-        <table class="table">
+        <table class="table text-center">
             <thead>
               <tr>
                 <th scope="col">No</th>
                 <th scope="col">Nama Sekolah </th>
+                <th scope="col">Jenis Sekolah </th>
+                <th scope="col">Status </th>
                 <th scope="col">NPSN</th>
                 <th scope="col">Alamat</th>
                 <th scope="col">Aksi</th>
@@ -59,11 +61,13 @@
                 <tr>
                     <th scope="row">{{ $index + $data->firstItem() }}</th>
                     <td>{{ $row->nama_sekolah }}</td>
+                    <td>{{ $row->jenis_sekolah }}</td>
+                    <td>{{ $row->status }}</td>
                     <td>{{ $row->npsn }}</td>
                     <td>{{ $row->alamat }}</td>
                     <td>
-                      <a href="/dashboard/tampildata/{{ $row->id }}" class="btn btn-warning">Edit</a>
-                      <a href="#" class="btn btn-danger delete" data-id="{{ $row->id }}" data-nama="{{ $row->nama_sekolah }}">Delete</a>
+                      <a href="/dashboard/tampildata/{{ $row->id }}" class="btn btn-warning"><i class="bi bi-pencil-square"></i> Edit</a>
+                      <a href="#" class="btn btn-danger delete" data-id="{{ $row->id }}" data-nama="{{ $row->nama_sekolah }}"><i class="bi bi-trash3"></i> Delete</a>
                     </td>
                 </tr>
                 @endforeach

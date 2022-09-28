@@ -28,8 +28,12 @@
                     <input type="text" name="nama_sekolah" class="form-control" id="namasekolah">
                   </div>
                   <div class="mb-3">
-                    <label for="npsn" class="form-label">Nomor Pokok Sekolah Nasional (NPSN)</label>
-                    <input type="number" name="npsn" class="form-control" id="npsn">
+                    <label for="jenis_sekolah" class="form-label">Jenis Sekolah</label>
+                    <select class="form-select col-5" name="jenis_sekolah" aria-label="Default select example">
+                      <option selected>Pilih</option>
+                      <option value="SMA">SMA</option>
+                      <option value="SMK">SMK</option>
+                    </select>
                   </div>
                   <div class="mb-3">
                     <label for="status" class="form-label">Status Sekolah</label>
@@ -38,6 +42,10 @@
                       <option value="Negeri">Negeri</option>
                       <option value="Swasta">Swasta</option>
                     </select>
+                  <div class="mb-3">
+                    <label for="npsn" class="form-label">Nomor Pokok Sekolah Nasional (NPSN)</label>
+                    <input type="number" name="npsn" class="form-control" id="npsn">
+                  </div>
                   </div>
                   <div class="mb-3">
                     <label for="alamat" class="form-label">Alamat</label>

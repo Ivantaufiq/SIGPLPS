@@ -19,17 +19,23 @@ class TambahDataController extends Controller
     {
         if($request->has('search')){
             $data = Profil::where('nama_sekolah', 'LIKE', '%' .$request->search. '%')->paginate(10);
-        }else{
-            
+            // $data = Profil::where('jenis_sekolah', 'LIKE', '%' .$request->filtersekolah. '%')->paginate(10);
+        }if($request->has('filter')){
+            $data = Profil::where('jenis_sekolah', 'LIKE', '%' .$request->filter. '%')->paginate(10);
+        }
+        else{
             $data = Profil::paginate(10);
         }
-
-        return view('dashboard.data.profil', compact('data'));
+        return view('dashboard.data.profil', compact('data'),[
+            "title" => "SIGPLPS | Profil Sekolah"
+        ]);
     }
 
     public function datasekolah()
     {
-        return view ('dashboard.data.tambahdata');
+        return view ('dashboard.data.tambahdata',[
+            "title" => "SIGPLPS | Tambah Data"
+        ]);
     }
 
     public function insertdata(Request $request){
@@ -41,7 +47,9 @@ class TambahDataController extends Controller
         $data = Profil::find($id);
         // dd($data);
 
-        return view('dashboard.data.tampildata', compact('data'));
+        return view('dashboard.data.tampildata', compact('data'), [
+            "title" => "SIGPLPS | Edit Profil"
+        ]);
     }
 
     public function updatedata(Request $request, $id){

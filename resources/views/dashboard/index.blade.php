@@ -23,7 +23,10 @@
                 </div><!-- /.container-fluid -->
             </section>
             <!-- /.content -->
+            @include('dashboard.layout.main')
         </div>
+
+        
         <!-- /.content-wrapper -->
         @include('dashboard.layout.footer')
 

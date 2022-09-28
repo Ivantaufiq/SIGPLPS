@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Profil;
 use GuzzleHttp\Middleware;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,13 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return view('dashboard.index');
+        $data = Profil::count();
+        $datasma = Profil::where('jenis_sekolah', 'SMA')->count();
+        $datasmk = Profil::where('jenis_sekolah', 'SMK')->count();
+        
+        return view('dashboard.index', compact('data', 'datasma', 'datasmk'),[
+            "title" => "SIGPLPS | Dashboard"
+        ]);
     }
 
     public function __construct()
