@@ -18,14 +18,15 @@ class TambahDataController extends Controller
     public function index(Request $request)
     {
         if($request->has('search')){
-            $data = Profil::where('nama_sekolah', 'LIKE', '%' .$request->search. '%')->paginate(10);
-            // $data = Profil::where('jenis_sekolah', 'LIKE', '%' .$request->filtersekolah. '%')->paginate(10);
-        }if($request->has('filter')){
-            $data = Profil::where('jenis_sekolah', 'LIKE', '%' .$request->filter. '%')->paginate(10);
+            $data = Profil::where('nama_sekolah', 'LIKE', '%' .$request->search . '%')->paginate(10);
         }
-        else{
+        if($request->has('filter')){
+            $data = Profil::where('jenis_sekolah', 'LIKE', '%' .$request->filter . '%')->paginate(10);
+        }
+        if(empty($request->filter) && empty($request->search)){
             $data = Profil::paginate(10);
         }
+        
         return view('dashboard.data.profil', compact('data'),[
             "title" => "SIGPLPS | Profil Sekolah"
         ]);

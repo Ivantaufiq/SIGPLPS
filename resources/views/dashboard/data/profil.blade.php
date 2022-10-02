@@ -26,13 +26,13 @@
       <form class="row g-3" method="GET">
           <div class="col-auto">
             <select class="form-select form-inline" name="filter" aria-label="Default select example">
-              <option selected>Pilih Berdasarkan</option>
+              <option selected value="" disabled>Pilih Berdasarkan</option>
               <option value="SMA" type='submit'>SMA</option>
               <option value="SMK">SMK</option>
             </select>
           </div>
           <div class="col-auto">
-            <input type="search" id="inputPassword6" name="search" class="form-control" aria-describedby="passwordHelpInline">
+            <input type="search" id="search" name="search" class="form-control" placeholder="Cari Nama Sekolah ...">
         </div>
           <div class="col-auto">
             <button type="submit" class="btn btn-primary mb-3">Search</button>
