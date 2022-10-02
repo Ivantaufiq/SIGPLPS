@@ -20,13 +20,37 @@ class TambahDataController extends Controller
         if($request->has('search')){
             $data = Profil::where('nama_sekolah', 'LIKE', '%' .$request->search . '%')->paginate(10);
         }
-        if($request->has('filter')){
-            $data = Profil::where('jenis_sekolah', 'LIKE', '%' .$request->filter . '%')->paginate(10);
+        if($request->has('jenis')){
+            $data = Profil::where('jenis_sekolah', 'LIKE', '%' .$request->jenis . '%')->paginate(10);
         }
-        if(empty($request->filter) && empty($request->search)){
+        if($request->has('status')){
+            $data = Profil::where('status', 'LIKE', '%' .$request->status . '%')->paginate(10);
+        }
+        if($request->has('status', 'jenis')){
+            $data = Profil::where('status', 'LIKE', '%' .$request->status . '%')
+                            ->where('jenis_sekolah', 'LIKE', '%' .$request->jenis . '%')
+                            ->paginate(10);
+        }
+        if($request->has('status', 'search')){
+            $data = Profil::where('status', 'LIKE', '%' .$request->status . '%')
+                            ->where('nama_sekolah', 'LIKE', '%' .$request->search . '%')
+                            ->paginate(10);
+        }
+        if($request->has('jenis', 'search')){
+            $data = Profil::where('jenis_sekolah', 'LIKE', '%' .$request->jenis . '%')
+                            ->where('nama_sekolah', 'LIKE', '%' .$request->search . '%')
+                            ->paginate(10);
+        }
+        if($request->has('status', 'jenis', 'search')){
+            $data = Profil::where('status', 'LIKE', '%' .$request->status . '%')
+                            ->where('jenis_sekolah', 'LIKE', '%' .$request->jenis . '%')
+                            ->where('nama_sekolah', 'LIKE', '%' .$request->search . '%')
+                            ->paginate(10);
+        }
+        if(empty($request->jenis) && empty($request->search) && empty($request->status)){
             $data = Profil::paginate(10);
         }
-        
+
         return view('dashboard.data.profil', compact('data'),[
             "title" => "SIGPLPS | Profil Sekolah"
         ]);

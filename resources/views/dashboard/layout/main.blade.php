@@ -27,7 +27,7 @@
               <div class="icon">
                 <i class="ion ion-university"></i>
               </div>
-              <a href="/dashboard/profil?filter=SMA&search=" class="small-box-footer">Lihat Selengkapnya <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="/dashboard/profil?jenis=SMA&search=" class="small-box-footer">Lihat Selengkapnya <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
@@ -42,7 +42,7 @@
               <div class="icon">
                 <i class="ion ion-university"></i>
               </div>
-              <a href="/dashboard/profil?filter=SMK&search=" class="small-box-footer">Lihat Selengkapnya <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="/dashboard/profil?jenis=SMK&search=" class="small-box-footer">Lihat Selengkapnya <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
         </div>
@@ -58,7 +58,7 @@
               <div class="icon">
                 <i class="ion ion-pie-graph"></i>
               </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="/dashboard/profil?jenis=SMA&status=Negeri&search=" class="small-box-footer">Lihat Selengkapnya <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
@@ -73,7 +73,7 @@
               <div class="icon">
                 <i class="ion ion-pie-graph"></i>
               </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="/dashboard/profil?jenis=SMA&status=Swasta&search=" class="small-box-footer">Lihat Selengkapnya <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
         </div>
@@ -88,7 +88,7 @@
               <div class="icon">
                 <i class="ion ion-pie-graph"></i>
               </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="/dashboard/profil?jenis=SMK&status=Negeri&search=" class="small-box-footer">Lihat Selengkapnya <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
 
@@ -103,7 +103,7 @@
               <div class="icon">
                 <i class="ion ion-pie-graph"></i>
               </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="/dashboard/profil?jenis=SMK&status=Swasta&search=" class="small-box-footer">Lihat Selengkapnya <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
         </div>

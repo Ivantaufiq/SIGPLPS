@@ -25,10 +25,17 @@
           {{-- Search --}}
       <form class="row g-3" method="GET">
           <div class="col-auto">
-            <select class="form-select form-inline" name="filter" aria-label="Default select example">
-              <option selected value="" disabled>Pilih Berdasarkan</option>
+            <select class="form-select form-inline" name="jenis" aria-label="Default select example">
+              <option selected value="" disabled>Pilih Berdasarkan Jenis</option>
               <option value="SMA" type='submit'>SMA</option>
               <option value="SMK">SMK</option>
+            </select>
+          </div>
+          <div class="col-auto">
+            <select class="form-select form-inline" name="status" aria-label="Default select example">
+              <option selected value="" disabled>Pilih Berdasarkan Status</option>
+              <option value="Negeri" type='submit'>Negeri</option>
+              <option value="Swasta">Swasta</option>
             </select>
           </div>
           <div class="col-auto">
