@@ -106,12 +106,46 @@
                     <label class="form-label">Koordinat Sekolah</label>
                     <br>
                     <label for="latitude" class="form-label">Latitude</label>
-                    <input type="text" name="latitude" class="form-control" id="latitude" value="{{ $data->latitude }}">
+                    <input type="text" name="latitude" class="form-control" id="lat" value="{{ $data->latitude }}">
                   </div>
                   <div class="mb-3">
                     <label for="longitude" class="form-label">Longitude</label>
-                    <input type="text" name="longitude" class="form-control" id="longitude" value="{{ $data->longitude }}">
+                    <input type="text" name="longitude" class="form-control" id="lng" value="{{ $data->longitude }}">
                   </div>
+
+                  <div id="map" style="height:400px; width: col-3;" class="my-3"></div>
+                  <script>
+                    let map;
+                    function initMap() {
+                        map = new google.maps.Map(document.getElementById("map"), {
+                            center: { lat: -0.032092, lng: 109.274789 },
+                            zoom: 14,
+                            scrollwheel: true,
+                        });
+
+                        const uluru = { lat: 0, lng: 0 };
+                        let marker = new google.maps.Marker({
+                            position: uluru,
+                            map: map,
+                            draggable: true
+                        });
+
+                        google.maps.event.addListener(marker,'position_changed',
+                            function (){
+                                let lat = marker.position.lat()
+                                let lng = marker.position.lng()
+                                $('#lat').val(lat)
+                                $('#lng').val(lng)
+                            })
+
+                        google.maps.event.addListener(map,'click',
+                        function (event){
+                            pos = event.latLng
+                            marker.setPosition(pos)
+                        })
+                    }
+                  </script>
+                  <script async defer src="https://maps.googleapis.com/maps/api/js?key=&callback=initMap" type="text/javascript"></script>
                   
                   <button type="submit" class="btn btn-primary">Submit</button>
                   <a href="/dashboard/profil" class="btn btn-secondary">Batal</a>

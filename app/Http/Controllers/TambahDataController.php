@@ -89,12 +89,61 @@ class TambahDataController extends Controller
         return redirect()->route('profil')->with('success', ' Data Berhasil Dihapus');
     }
 
-    public function exportpdf(){
-        $data = Profil::all();
+    public function exportsma(){
+        $data = Profil::where('jenis_sekolah', 'SMA')->get();
 
         view()->share('data', $data);
         $pdf = Pdf::loadview('profilsekolah-pdf');
-        return $pdf->download('profilsekolah.pdf');
+        return $pdf->download('profilsekolahSMA.pdf');
+    }
+
+    public function exportsmk(){
+            $data = Profil::where('jenis_sekolah', 'SMK')->get();        
+        view()->share('data', $data);
+        $pdf = Pdf::loadview('profilsekolah-pdf');
+        return $pdf->download('profilsekolahSMK.pdf');
+    }
+
+    public function exportsemua(){
+        $data = Profil::all();     
+    view()->share('data', $data);
+    $pdf = Pdf::loadview('profilsekolah-pdf');
+    return $pdf->download('profilsekolah.pdf');
+    }
+
+    public function exportsman(){
+        $data = Profil::where('jenis_sekolah', 'SMA')
+                    ->where('status', 'Negeri')                
+                    ->get();     
+    view()->share('data', $data);
+    $pdf = Pdf::loadview('profilsekolah-pdf');
+    return $pdf->download('profilsekolahsman.pdf');
+    }
+
+    public function exportsmas(){
+        $data = Profil::where('jenis_sekolah', 'SMA')
+                    ->where('status', 'Swasta')                
+                    ->get();     
+    view()->share('data', $data);
+    $pdf = Pdf::loadview('profilsekolah-pdf');
+    return $pdf->download('profilsekolahsmas.pdf');
+    }
+
+    public function exportsmkn(){
+        $data = Profil::where('jenis_sekolah', 'SMK')
+                    ->where('status', 'Negeri')                
+                    ->get();     
+    view()->share('data', $data);
+    $pdf = Pdf::loadview('profilsekolah-pdf');
+    return $pdf->download('profilsekolahsmkn.pdf');
+    }
+    public function exportsmks(){
+        $data = Profil::where('jenis_sekolah', 'SMK')
+                    ->where('status', 'Swasta')                
+                    ->get();     
+    view()->share('data', $data);
+    $pdf = Pdf::loadview('profilsekolah-pdf');
+    return $pdf->download('profilsekolahsmks.pdf');
     }
 
     public function exportexcel(){

@@ -42,6 +42,7 @@
             <th>No</th>
             <th>Nama Sekolah</th>
             <th>NPSN</th>
+            <th>Status</th>
             <th>Alamat</th>
         </tr>
         @php
@@ -54,6 +55,7 @@
             <td>{{ $no++ }}</td>
             <td>{{ $row->nama_sekolah }}</td>
             <td>{{ $row->npsn }}</td> 
+            <td>{{ $row->status }}</td> 
             <td>{{ $row->alamat }}</td>
         </tr>
             

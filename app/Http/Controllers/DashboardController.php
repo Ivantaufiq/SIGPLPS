@@ -18,8 +18,16 @@ class DashboardController extends Controller
         $data = Profil::count();
         $datasma = Profil::where('jenis_sekolah', 'SMA')->count();
         $datasmk = Profil::where('jenis_sekolah', 'SMK')->count();
+        $datasman = Profil::where('jenis_sekolah','SMA')
+                            ->where('status','Negeri')->count();
+        $datasmas = Profil::where('jenis_sekolah','SMA')
+                            ->where('status','Swasta')->count();                    
+        $datasmkn = Profil::where('jenis_sekolah','SMK')
+                            ->where('status','Negeri')->count();                    
+        $datasmks = Profil::where('jenis_sekolah','SMK')
+                            ->where('status','Swasta')->count();                    
         
-        return view('dashboard.index', compact('data', 'datasma', 'datasmk'),[
+        return view('dashboard.index', compact('data', 'datasma', 'datasmk', 'datasman', 'datasmas', 'datasmkn', 'datasmks'),[
             "title" => "SIGPLPS | Dashboard"
         ]);
     }
