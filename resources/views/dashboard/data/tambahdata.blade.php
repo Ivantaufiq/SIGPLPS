@@ -25,11 +25,11 @@
                   @csrf
                   <div class="mb-3">
                     <label for="namasekolah" class="form-label">Nama Sekolah</label>
-                    <input type="text" name="nama_sekolah" class="form-control" id="namasekolah" placeholder="Contoh : SMA Negeri 1">
+                    <input type="text" name="nama_sekolah" class="form-control @error ('nama_sekolah') is-invalid @enderror" id="namasekolah" placeholder="Contoh : SMA Negeri 1" >
                   </div>
                   <div class="mb-3">
                     <label for="jenis_sekolah" class="form-label">Jenis Sekolah</label>
-                    <select class="form-select col-5" name="jenis_sekolah" aria-label="Default select example">
+                    <select class="form-select col-5 @error ('jenis_sekolah') is-invalid @enderror" name="jenis_sekolah" aria-label="Default select example">
                       <option selected>Pilih</option>
                       <option value="SMA">SMA</option>
                       <option value="SMK">SMK</option>
@@ -44,16 +44,16 @@
                     </select>
                   <div class="mb-3">
                     <label for="npsn" class="form-label">Nomor Pokok Sekolah Nasional (NPSN)</label>
-                    <input type="number" name="npsn" class="form-control" id="npsn">
+                    <input type="number" name="npsn" class="form-control @error ('npsn') is-invalid @enderror" id="npsn">
                   </div>
                   </div>
                   <div class="mb-3">
                     <label for="alamat" class="form-label">Alamat</label>
-                    <textarea class="form-control" name="alamat" id="alamat" rows="3"></textarea>
+                    <textarea class="form-control @error ('alamat') is-invalid @enderror" name="alamat" id="alamat" rows="3"></textarea>
                   </div>
                   <div class="mb-3">
                     <label for="kecamatan" class="form-label">Kecamatan</label>
-                    <select class="form-select col-5" name="kecamatan" aria-label="Default select example">
+                    <select class="form-select col-5 @error ('kecamatan') is-invalid @enderror" name="kecamatan" aria-label="Default select example">
                       <option selected>Pilih Kecamatan</option>
                       <option value="Pontianak Barat">Pontianak Barat</option>
                       <option value="Pontianak Kota">Pontianak Kota</option>
@@ -65,7 +65,7 @@
                   </div>
                   <div class="mb-3">
                     <label for="kelurahan" class="form-label">Kelurahan</label>
-                    <select class="form-select col-5" name="kelurahan" aria-label="Default select example">
+                    <select class="form-select col-5 @error ('kelurahan') is-invalid @enderror" name="kelurahan" aria-label="Default select example">
                       <option selected>Pilih Kelurahan</option>
                       <option value="Pal Lima">Pal Lima</option>
                       <option value="Sungai Beliung">Sungai Beliung</option>
@@ -100,63 +100,34 @@
                   </div>
                   <div class="mb-3">
                     <label for="jumlahsiswa" class="form-label">Jumlah Siswa</label>
-                    <input type="number" name="jumlah_siswa" class="form-control" id="jumlahsiswa" >
+                    <input type="number" name="jumlah_siswa" class="form-control @error ('jumlah_siswa') is-invalid @enderror" id="jumlahsiswa" >
                   </div>
                   <div class="mb-3">
                     <label for="jumlahguru" class="form-label">Jumlah Guru</label>
-                    <input type="number" name="jumlah_guru" class="form-control" id="jumlahguru" >
+                    <input type="number" name="jumlah_guru" class="form-control @error ('jumlah_guru') is-invalid @enderror" id="jumlahguru" >
                   </div>
                   <div class="mb-3">
                     <label for="jumlahkelas" class="form-label">Jumlah Kelas</label>
-                    <input type="number" name="jumlah_kelas" class="form-control" id="jumlahkelas" >
+                    <input type="number" name="jumlah_kelas" class="form-control @error ('jumlah_kelas') is-invalid @enderror" id="jumlahkelas" >
                   </div>
                   <div class="mb-3">
                     <label class="form-label">Koordinat Sekolah</label>
                     <br>
                     <label for="latitude" class="form-label">Latitude</label>
-                    <input type="text" name="latitude" class="form-control" id="lat" >
+                    <input type="text" name="latitude" class="form-control @error ('latitude') is-invalid @enderror" id="latitude" >
                   </div>
                   <div class="mb-3">
                     <label for="longitude" class="form-label">Longitude</label>
-                    <input type="text" name="longitude" class="form-control" id="lng" >
+                    <input type="text" name="longitude" class="form-control @error ('longitude') is-invalid @enderror" id="longitude" >
                   </div>
-
-                  <div id="map" style="height:400px; width: col-3;" class="my-3"></div>
-                  <script>
-                    let map;
-                    function initMap() {
-                        map = new google.maps.Map(document.getElementById("map"), {
-                            center: { lat: -0.032092, lng: 109.274789 },
-                            zoom: 14,
-                            scrollwheel: true,
-                        });
-
-                        const uluru = { lat: 0, lng: 0 };
-                        let marker = new google.maps.Marker({
-                            position: uluru,
-                            map: map,
-                            draggable: true
-                        });
-
-                        google.maps.event.addListener(marker,'position_changed',
-                            function (){
-                                let lat = marker.position.lat()
-                                let lng = marker.position.lng()
-                                $('#lat').val(lat)
-                                $('#lng').val(lng)
-                            })
-
-                        google.maps.event.addListener(map,'click',
-                        function (event){
-                            pos = event.latLng
-                            marker.setPosition(pos)
-                        })
-                    }
-                  </script>
-                  <script async defer src="https://maps.googleapis.com/maps/api/js?key=&callback=initMap" type="text/javascript"></script>
+                  <div class="mb-1">
+                    <label >Pilih Koordinat</label>
+                    </div>
                   
-                  <button type="submit" class="btn btn-primary">Submit</button>
-                  <a href="/dashboard/profil" class="btn btn-secondary">Batal</a>
+                  <div id="map" style="height: 400px"></div>
+
+                  <button type="submit" class="btn btn-primary mt-3">Submit</button>
+                  <a href="/dashboard/profil" class="btn btn-secondary mt-3">Batal</a>
                 </form>
               </div>
             </div>
@@ -177,5 +148,35 @@
 <!-- ./wrapper -->
 
 @include('dashboard.layout.script')
+<script>           
+  var map = L.map('map').setView([-0.0285867, 109.3357431], 15);
+  L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+  }).addTo(map);
+
+  var latInput = document.querySelector("[name=latitude]");
+  var lngInput = document.querySelector("[name=longitude]");
+
+  var curLocation = [-0.0285867, 109.3357431];
+  map.attributionControl.setPrefix(false);
+
+  var marker = new L.marker(curLocation, {
+    draggable:'true'
+  });
+
+  marker.on('dragend', function(event) {
+    var position = marker.getLatLng();
+    marker.setLatLng(position, {
+      draggable:'true'
+    }).bindPopup(position).update();
+    $("#latitude").val(position.lat);
+    $("#longitude").val(position.lng);
+  });
+  map.addLayer(marker);
+
+
+</script>
 </body>
+
+
 </html>

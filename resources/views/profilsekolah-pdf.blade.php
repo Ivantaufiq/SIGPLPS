@@ -44,6 +44,11 @@
             <th>NPSN</th>
             <th>Status</th>
             <th>Alamat</th>
+            <th>Kecamatan</th>
+            <th>Kelurahan</th>
+            <th>Jumlah Siswa</th>
+            <th>Jumlah Guru</th>
+            <th>Jumlah Kelas</th>
         </tr>
         @php
             $no=1;
@@ -57,6 +62,11 @@
             <td>{{ $row->npsn }}</td> 
             <td>{{ $row->status }}</td> 
             <td>{{ $row->alamat }}</td>
+            <td>{{ $row->kecamatan }}</td>
+            <td>{{ $row->kelurahan }}</td>
+            <td>{{ $row->jumlah_siswa }}</td>
+            <td>{{ $row->jumlah_guru }}</td>
+            <td>{{ $row->jumlah_kelas }}</td>
         </tr>
             
         @endforeach

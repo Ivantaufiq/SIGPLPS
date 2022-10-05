@@ -19,7 +19,7 @@
     <section class="content">
         <div class="container-fluid">
           <a href="/dashboard/tambahdata" type="button" class="btn btn-success mb-2"><i class="bi bi-plus-lg"></i> Tambah Data</a>
-          <p>{{ url()->full() }}</p>
+          {{-- <p>{{ url()->full() }}</p> --}}
           @if (url()->full() == env('APP_URL') . "/dashboard/profil?jenis=SMA&search=")
           <a href="{{ route('exportsma') }}" type="button" class="btn btn-danger mb-2"><i class="bi bi-filetype-pdf"></i> Export PDF</a>
 
@@ -41,6 +41,9 @@
           @elseif(url()->full() == env('APP_URL') . "/dashboard/profil?jenis=SMK&search=&status=Swasta")
           <a href="{{ route('exportsmkn') }}" type="button" class="btn btn-danger mb-2"><i class="bi bi-filetype-pdf"></i> Export PDF</a>
           
+          @else
+          <a href="{{ route('exportsemua') }}" type="button" class="btn btn-danger mb-2"><i class="bi bi-filetype-pdf"></i> Export PDF</a>
+
           @endif
 
           <a href="/dashboard/exportexcel" type="button" class="btn btn-success mb-2"><i class="bi bi-filetype-xlsx"></i> Export Excel</a>
