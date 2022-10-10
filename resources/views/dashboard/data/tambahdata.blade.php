@@ -125,6 +125,7 @@
                     </div>
                   
                   <div id="map" style="height: 400px"></div>
+                  <div class="coordinate"></div>
 
                   <button type="submit" class="btn btn-primary mt-3">Submit</button>
                   <a href="/dashboard/profil" class="btn btn-secondary mt-3">Batal</a>
@@ -150,9 +151,24 @@
 @include('dashboard.layout.script')
 <script>           
   var map = L.map('map').setView([-0.0285867, 109.3357431], 15);
-  L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+  var osm = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
       attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
+
+  var googleSat = L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}',{
+    maxZoom: 20,
+    subdomains:['mt0','mt1','mt2','mt3']
+  });
+
+  var googleHybrid = L.tileLayer('http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}',{
+    maxZoom: 20,
+    subdomains:['mt0','mt1','mt2','mt3']
+  });
+
+  var googleTerrain = L.tileLayer('http://{s}.google.com/vt/lyrs=p&x={x}&y={y}&z={z}',{
+    maxZoom: 20,
+    subdomains:['mt0','mt1','mt2','mt3']
+  });
 
   var latInput = document.querySelector("[name=latitude]");
   var lngInput = document.querySelector("[name=longitude]");
@@ -160,8 +176,15 @@
   var curLocation = [-0.0285867, 109.3357431];
   map.attributionControl.setPrefix(false);
 
+  var markerIcon = L.icon({
+    iconUrl: '/marker48.png',
+    iconSize:     [56, 56], // size of the icon
+  });
+
+
   var marker = new L.marker(curLocation, {
-    draggable:'true'
+    draggable:'true',
+    icon: markerIcon 
   });
 
   marker.on('dragend', function(event) {
@@ -174,7 +197,20 @@
   });
   map.addLayer(marker);
 
+  //leaflet search
+  L.Control.geocoder().addTo(map);
 
+  //leaflet layer control
+  var baseMaps = {
+    'Open Street Map': osm,
+    'Terrain': googleTerrain,
+    'Satelite': googleSat,
+    'Hybrid': googleHybrid
+  }
+  L.control.layers(baseMaps).addTo(map);
+
+  //scale
+  L.control.scale({ position: 'bottomright' }).addTo(map);
 </script>
 </body>
 
