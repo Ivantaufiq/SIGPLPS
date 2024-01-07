@@ -23,47 +23,24 @@
                         </p>
                     </a>
                 </li>
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                   <a href="/dashboard/tambahdata" class="nav-link">
                     <i class="nav-icon fa-solid fa-keyboard"></i>
                       <p>
-                          Input Profil Sekolah
+                          Tambah Data Sekolah
                       </p>
                   </a>
-              </li>
+              </li> --}}
 
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        {{-- <i class="nav-icon fas fa-file"></i> --}}
-                        <i class="nav-icon fa-solid fa-school"></i>
-                        <p>
-                            Profil Sekolah
-                            <i class="fas fa-angle-left right"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                          <a href="{{ url('dashboard/profil?jenis=SMA&search=') }}" class="nav-link">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Data SMA</p>
-                          </a>
-                        </li>
-                        <li class="nav-item">
-                          <a href="{{ url('dashboard/profil?jenis=SMK&search=') }}" class="nav-link">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Data SMK</p>
-                          </a>
-                        </li>
-                        <li class="nav-item">
-                          <a href="{{ url('dashboard/profil') }}" class="nav-link">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Semua Sekolah</p>
-                          </a>
-                        </li>
-                      </ul>
-                </li>
-                
-    
+              <li class="nav-item">
+                <a href="{{ url('dashboard/profil') }}" class="nav-link">
+                  <i class="nav-icon fa-solid fa-school"></i>
+                    <p>
+                        Kelola Data Sekolah
+                    </p>
+                </a>
+            </li>
+
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

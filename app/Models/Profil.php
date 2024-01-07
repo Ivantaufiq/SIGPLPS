@@ -9,7 +9,19 @@ class Profil extends Model
 {
     use HasFactory;
 
-    protected $guarded=['id'];
-
+    protected $fillable = ['nama_sekolah',
+                            'jenis_sekolah',
+                            'status',
+                            'npsn',
+                            'akreditasi',
+                            'alamat',
+                            'kecamatan',
+                            'kelurahan',
+                            'jumlah_siswa',
+                            'jumlah_guru',
+                            'jumlah_kelas',
+                            'jurusan',
+                            'latitude',
+                            'longitude'];
     
 }

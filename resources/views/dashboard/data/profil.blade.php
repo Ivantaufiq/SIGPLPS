@@ -18,51 +18,28 @@
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
-          <a href="/dashboard/tambahdata" type="button" class="btn btn-success mb-2"><i class="bi bi-plus-lg"></i> Tambah Data</a>
-          {{-- <p>{{ url()->full() }}</p> --}}
-          @if (url()->full() == env('APP_URL') . "/dashboard/profil?jenis=SMA&search=")
-          <a href="{{ route('exportsma') }}" type="button" class="btn btn-danger mb-2"><i class="bi bi-filetype-pdf"></i> Export PDF</a>
-
-          @elseif(url()->full() == env('APP_URL') . "/dashboard/profil?jenis=SMK&search=")
-          <a href="{{ route('exportsmk') }}" type="button" class="btn btn-danger mb-2"><i class="bi bi-filetype-pdf"></i> Export PDF</a>
-
-          @elseif(url()->full() == env('APP_URL') . "/dashboard/profil")
-          <a href="{{ route('exportsemua') }}" type="button" class="btn btn-danger mb-2"><i class="bi bi-filetype-pdf"></i> Export PDF</a>
+          <a href="/dashboard/tambahdata_View" type="button" class="btn btn-success mb-2"><i class="bi bi-plus-lg"></i> Tambah Data</a>
           
-          @elseif(url()->full() == env('APP_URL') . "/dashboard/profil?jenis=SMA&search=&status=Negeri")
-          <a href="{{ route('exportsman') }}" type="button" class="btn btn-danger mb-2"><i class="bi bi-filetype-pdf"></i> Export PDF</a>
+          <a href="{{ route('cetakpdf') }}" type="button" class="btn btn-danger mb-2"><i class="bi bi-filetype-pdf"></i> Cetak PDF</a>
 
-          @elseif(url()->full() == env('APP_URL') . "/dashboard/profil?jenis=SMA&search=&status=Swasta")
-          <a href="{{ route('exportsmas') }}" type="button" class="btn btn-danger mb-2"><i class="bi bi-filetype-pdf"></i> Export PDF</a>
-
-          @elseif(url()->full() == env('APP_URL') . "/dashboard/profil?jenis=SMK&search=&status=Negeri")
-          <a href="{{ route('exportsmkn') }}" type="button" class="btn btn-danger mb-2"><i class="bi bi-filetype-pdf"></i> Export PDF</a>
-
-          @elseif(url()->full() == env('APP_URL') . "/dashboard/profil?jenis=SMK&search=&status=Swasta")
-          <a href="{{ route('exportsmkn') }}" type="button" class="btn btn-danger mb-2"><i class="bi bi-filetype-pdf"></i> Export PDF</a>
-          
-          @else
-          <a href="{{ route('exportsemua') }}" type="button" class="btn btn-danger mb-2"><i class="bi bi-filetype-pdf"></i> Export PDF</a>
-
-          @endif
-
-          <a href="/dashboard/exportexcel" type="button" class="btn btn-success mb-2"><i class="bi bi-filetype-xlsx"></i> Export Excel</a>
+          <a href="/dashboard/cetakexcel" type="button" class="btn btn-success mb-2"><i class="bi bi-filetype-xlsx"></i> Cetak Excel</a>
           
           {{-- Search --}}
       <form class="row g-3" method="GET">
           <div class="col-auto">
             <select class="form-select form-inline" name="jenis" aria-label="Default select example">
               <option selected value="" disabled>Pilih Berdasarkan Jenis</option>
-              <option value="SMA" type='submit'>SMA</option>
+              <option value="SMA" >SMA</option>
               <option value="SMK">SMK</option>
             </select>
           </div>
           <div class="col-auto">
             <select class="form-select form-inline" name="status" aria-label="Default select example">
               <option selected value="" disabled>Pilih Berdasarkan Status</option>
-              <option value="Negeri" type='submit'>Negeri</option>
+              <option value="Negeri">Negeri</option>
               <option value="Swasta">Swasta</option>
             </select>
+            
           </div>
           <div class="col-auto">
             <input type="search" id="search" name="search" class="form-control" placeholder="Cari Nama Sekolah ...">
@@ -71,43 +48,49 @@
             <button type="submit" class="btn btn-primary mb-3">Search</button>
           </div>
       </form>
-    
-        <table class="table text-center">
+        <div class="table-responsive">
+          <table class="table text-center">
             <thead>
               <tr>
-                <th scope="col">No</th>
-                <th scope="col">Nama Sekolah </th>
-                <th scope="col">Jenis Sekolah </th>
-                <th scope="col">Status </th>
-                <th scope="col">NPSN</th>
-                <th scope="col">Alamat</th>
-                <th scope="col">Aksi</th>
-            </tr>
+                <th scope="col" style="vertical-align: middle">No</th>
+                <th scope="col" style="vertical-align: middle">Nama Sekolah </th>
+                <th scope="col" style="vertical-align: middle">Jenis Sekolah </th>
+                <th scope="col" style="vertical-align: middle">Status </th>
+                <th scope="col" style="vertical-align: middle">NPSN</th>
+                <th scope="col" style="vertical-align: middle">Alamat</th>
+                <th scope="col" style="vertical-align: middle">Aksi</th>
+              </tr>
             </thead>
             <tbody>
-
+              
               @php
-                  $no = 1;
-              @endphp
+                    $no = 1;
+                @endphp
 
-                @foreach ($data as $index => $row)
-                <tr>
-                    <th scope="row">{{ $index + $data->firstItem() }}</th>
-                    <td>{{ $row->nama_sekolah }}</td>
-                    <td>{{ $row->jenis_sekolah }}</td>
-                    <td>{{ $row->status }}</td>
-                    <td>{{ $row->npsn }}</td>
-                    <td>{{ $row->alamat }}</td>
-                    <td>
-                      <a href="/dashboard/tampildata/{{ $row->id }}" class="btn btn-warning"><i class="bi bi-pencil-square"></i> Edit</a>
-                      <a href="#" class="btn btn-danger delete" data-id="{{ $row->id }}" data-nama="{{ $row->nama_sekolah }}"><i class="bi bi-trash3"></i> Delete</a>
-                    </td>
-                </tr>
-                @endforeach
-
-            </tbody>
+                  @foreach ($data as $index => $row)
+                  <tr>
+                      <td>{{ $index + $data->firstItem() }}</td>
+                      <td>{{ $row->nama_sekolah }}</td>
+                      <td>{{ $row->jenis_sekolah }}</td>
+                      <td>{{ $row->status }}</td>
+                      <td>{{ $row->npsn }}</td>
+                      <td>{{ $row->alamat }}</td>
+                      <td>
+                        <a href="/dashboard/editdata_View/{{ $row->id }}" class="btn btn-warning mb-1"><i class="bi bi-pencil-square"></i> Edit</a>
+                        <a href="#" class="btn btn-danger delete" data-id="{{ $row->id }}" data-nama="{{ $row->nama_sekolah }}"><i class="bi bi-trash3"></i> Delete</a>
+                      </td>
+                  </tr>
+                  @endforeach
+                  
+                  
+                  
+                  
+                </tbody>
           </table>
-          {{ $data->links () }}
+        </div>
+          <p class="text-center">{{ $data->links()  }}</p>
+          
+         
       </div><!-- /.container-fluid -->
     </section>
     <!-- /.content -->
